@@ -10,31 +10,37 @@ body{
     border:2px solid #fff ;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:space-between;
     align-items: center;
-    margin-top: 50px !important;
+    
     height: auto;
     width: 100%;
     
 }
+.tempoDiv{
+    position: absolute;
+    display: flex;
+}
 .logo__pdx{
     border:2px solid #fff ;
-    margin-bottom: 60px;
-    width: 800px;
-    height: 320px;
+    position: relative;
+    left: 690px;
+    bottom: 550px;
+    width: 300px;
+    height: 130px;
     background-image: url(./images/logo1-removebg-preview.png);
     background-repeat: no-repeat;
-    background-clip: border-box;
+    background-size: cover;
 }
 #PDX{
     display: flex;
     border:2px solid #fff ;
-    height: 600px;
-    width: 850px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url(./images/open-pdx-removebg-preview.png);
-    object-fit: cover;
+    height: 550px;
+    width: 870px;
+background-size:1100px ;
+background-position:center;
+background-repeat: no-repeat;
+background-image: url(./images/Artboard1.png);
 }
 .pdx__side1{
     margin-left: 7%;
