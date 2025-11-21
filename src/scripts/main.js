@@ -15,4 +15,4 @@ export const CLAVE = document.querySelector('#CLAVE');
 export const BOTONSUBMIT = document.querySelector('#BOTONSUBMIT');
 
 //Start listener and catch inputs
-listenerLogin(Formulario,CUENTA,CLAVE);
+listenerLogin(Formulario,CUENTA,CLAVE)
