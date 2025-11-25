@@ -1,5 +1,5 @@
-import { loginValidation } from "../Api/loginValidation.js";
 
+/*
 
 // LOGIN FORM LISTENER
 
@@ -15,7 +15,7 @@ export function listenerLogin(form, user, password) {
         //testing data processed
         loginValidation(formData);
     })
-}
+}*/
 /*
 export function listenerLogin(form, user, password) {
     form.addEventListener('submit', (event) => {
@@ -44,3 +44,36 @@ export function listenerLogin(form, user, password) {
 ///ES IGUAL QUE EL TUYO PERO CON UN IF Y UN ELSE IF PARA ADMIN Y USER
 ///PARA QUE DEPENDIENDO DEL TIPO DE CUENTA ENTRE EN INDEX2 O EN INDEX3
 //TE LA DEJO COMENTADA PARA QUE LO REVISES ;)
+
+
+
+// src/scripts/events/loginListener.js
+import { loginValidation } from "../Api/loginValidation.js";
+
+export function listenerLogin(form, user, password) {
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = {
+      userID: user.value,
+      userPASS: password.value
+    };
+
+    const result = await loginValidation(formData);
+
+    if (!result.ok) {
+      // Mostrar mensaje de error en UI (puedes mejorarlo luego)
+      alert(result.message || "Login fallido");
+      return;
+    }
+
+    // Leer usuario guardado en localStorage
+    const stored = JSON.parse(localStorage.getItem('pdx_user') || '{}');
+    const role = stored.role || (result.data?.user?.role) || (result.data?.adminID?.role);
+
+    if (role === 'admin') {
+      window.location.href = "/index2.html";
+    } else {
+      window.location.href = "/index3.html";
+    }
+  });
+}
