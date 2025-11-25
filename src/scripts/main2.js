@@ -1,5 +1,6 @@
-import { getData } from'../scripts/Api/apiFetch.js';
-import { showMe } from'../scripts/Api/apiFetch.js';
+
+import { showAllPokemonsGrid } from "./Api/apiFetch.js";
+//import { showMe } from'../scripts/Api/apiFetch.js';
 import '../styles/style-Index2.scss';
 ///////////////////////////////////////////////////////////////////////
 /////////////LLAMADAS A ELEMENTOS//////////////////////////////////////
@@ -17,6 +18,20 @@ export const heightDiv= document.querySelector("#HH");
 export const typeDiv0= document.querySelector("#pdxScreen");
 export const typeDiv1= document.querySelector("#type1");
 export const typeDiv2= document.querySelector("#type2");
-///////////////////////////////////////////////////////////
+export const gridContainer = document.querySelector("#pokemonGrid");
+export const auxScreen = document.querySelector("#pdxScreenAux");
 
-showMe();
+///////////////////////////////////////////////////////////
+/*const user = JSON.parse(localStorage.getItem("user"));
+if (!user) {
+    window.location.href = "index.html";
+};*/
+
+
+//showMe();
+
+
+
+
+// Al cargar la página
+showAllPokemonsGrid(26); // Muestra los primeros 20 Pokémon
