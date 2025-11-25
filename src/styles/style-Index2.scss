@@ -48,7 +48,7 @@ background-image: url(../images/Artboard1.png);
     padding: 3px;
     overflow-y: scroll;
     //display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
     border: 3px solid greenyellow;
     position: relative;
     top: 157px;
@@ -113,4 +113,41 @@ background-image: url(../images/Artboard1.png);
 }
 .namePK{
     margin-left: 50px;
+}
+
+.pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.pokemon-card {
+    border: 2px solid #333;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+}
+.pokemon-card:hover {
+    transform: scale(1.05);
+}
+.pokemon-card.selected {
+    border-color: gold;
+}
+.hidden {
+    display: none !important;
+}
+
+#pdxScreenAux{
+    display: none;
+    padding: 3px;
+    position: relative;
+    top: 157px;
+    left: 68px;
+    width: 260px;
+    height: 210px;
 }
