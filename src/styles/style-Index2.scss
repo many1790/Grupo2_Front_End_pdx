@@ -71,7 +71,7 @@ background-image: url(../images/Artboard1.png);
     height: 45px;
     border:3px solid blue;
     position: relative;
-    top: 217px;
+    top: 187px;
     left: 104px;
 }
 .pdx__screen2{
@@ -172,4 +172,32 @@ background-image: url(../images/Artboard1.png);
         transition: transform 0.2s ease-in-out;
    
     }
+}
+// ADD NEW USER BUTTON
+#pdxCreateButton {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: relative;
+    top: 167px;
+    left: 73px;
+    background-color: transparent;
+    cursor: pointer;
+    border: 1px solid red;
+    svg {
+        background-color: transparent;
+        color: transparent;
+    }
+    &:hover {
+        transform: scale(1.08);
+        transition: transform 0.2s ease-in-out;
+   
+    }
+}
+
+
+#newUserDiv {
+    position: relative;
+    top: 200px;
+
 }
