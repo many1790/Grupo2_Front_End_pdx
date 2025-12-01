@@ -179,10 +179,11 @@ background-image: url(../images/Artboard1.png);
     height: 30px;
     border-radius: 50%;
     position: relative;
-    top: 168px;
-    left: 75px;
+    top: 167px;
+    left: 73px;
     background-color: transparent;
     cursor: pointer;
+    border: 1px solid red;
     svg {
         background-color: transparent;
         color: transparent;
@@ -192,4 +193,11 @@ background-image: url(../images/Artboard1.png);
         transition: transform 0.2s ease-in-out;
    
     }
+}
+
+
+#newUserDiv {
+    position: relative;
+    top: 200px;
+
 }

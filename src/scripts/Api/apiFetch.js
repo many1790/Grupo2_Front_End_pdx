@@ -122,3 +122,8 @@ deletePokeBtn.addEventListener("click", async ()=>{
         alert(error.message);
     }
 })
+
+
+export async function createNewPokemonFetch(formGatherData) {
+    console.log('ole');
+}
