@@ -7,6 +7,7 @@ import {
 ///////////////////////////////////////////////////////////////////////
 /////////////LLAMADAS A ELEMENTOS//////////////////////////////////////
 export const anchorElement2 = document.querySelector("#app2");
+export const pdx= document.querySelector("#PDX");
 export const asideLeft = document.querySelector("#pdxSide1");
 export const asideRigth = document.querySelector("#pdxSide2");
 /////////////////////////////////////////////////////////////////
@@ -56,11 +57,11 @@ export function setNewUserForm() {
   }
 
 
-  const newUserDiv = document.createElement("div");
-  newUserDiv.id = "newUserDiv";
+  const newUserDiv = document.createElement("div");////////////////////////////////////////////////////////
+  newUserDiv.id = "newUserDiv";////////////////////////////////////////////////////////////////////////////
 
-  const newUserForm = document.querySelector("PDX"); ///////////////////////////////////////////////
-  newUserForm.id = "newUserForm";////////////////////////////////////////////////////////////////////
+ // const newUserForm = document.querySelector("PDX"); ///////////////////////////////////////////////
+  //newUserForm.id = "newUserForm";////////////////////////////////////////////////////////////////////
 
   // inputs
   const inputPokeName = document.createElement("input");
@@ -71,34 +72,36 @@ export function setNewUserForm() {
   const inputDescription = document.createElement("input");
   inputDescription.id = "inputDescription";
   inputDescription.required = true;
-  inputDescription.placeholder = "Descripcion"
+  inputDescription.placeholder = "Description:"
 
   const inputWeight = document.createElement("input");
   inputWeight.id = "inputWeight";
   inputWeight.type = "number";
   inputWeight.required = true;
-  inputWeight.placeholder = "Peso"
+  //inputWeight.placeholder = "Peso"
 
   const inputHeight = document.createElement("input");
   inputHeight.id = "inputHeight";
   inputHeight.type = "number";
   inputHeight.required = true;
-  inputHeight.placeholder = "Altura"
+  //inputHeight.placeholder = "Altura"
 
   const inputPokeType = document.createElement("input");
   inputPokeType.id = "inputPokeType";
   inputPokeType.required = true;
-  inputPokeType.placeholder = "Tipo";
+  //inputPokeType.placeholder = "Tipo";
 
   // buttons
   const cancelButton = document.createElement("button");
-  cancelButton.textContent = "Cancelar";
+  cancelButton.textContent = "Can";
+  cancelButton.id="btnCancel";
 
   const saveButton = document.createElement("button");
+  saveButton.id="btnSave";
   saveButton.type = "submit";
-  saveButton.textContent = "Guardar";
+  saveButton.textContent = "Sav";
 
-  newUserForm.append(
+  pdx.append(
     inputPokeName,
     inputDescription,
     inputWeight,
@@ -115,7 +118,7 @@ export function setNewUserForm() {
   eventsForNewUserForm({
     cancelButton,
     saveButton,
-    newUserDiv,
+    //newUserDiv,
     inputPokeName,
     inputDescription,
     inputWeight,
