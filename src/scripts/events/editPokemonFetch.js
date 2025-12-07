@@ -35,39 +35,69 @@ export function getSprite(id) {
 }
 
 
-// ======================
-// 🔥 FUNCIÓN EDIT POKEMON
-// ======================
+export const editDiv = document.getElementById("editContainer");
+
 export async function editPokemon(pokeID) {
-    
+
     const pokemon = await fetchPokemonDetails(pokeID);
-  
     if (!pokemon) return;
   
-    // Contenedor donde irán los inputs
-    const editDiv = document.getElementById("editContainer");
+  
+    // ======= FORMULARIO COMPLETO =======
+    editDiv.classList="editConteinerView2";
     editDiv.innerHTML = `
-        <h2>Editar Pokémon</h2>
-  
-        <label>Nombre</label>
-        <input id="editName" value="${pokemon.pokeName}" type="text">
-  
-        <label>Peso</label>
-        <input id="editWeight" value="${pokemon.pokeOverview.weight}" type="number">
-  
-        <label>Altura</label>
-        <input id="editHeight" value="${pokemon.pokeOverview.height}" type="number">
-  
-        <label>Tipo</label>
-        <input id="editType" value="${pokemon.pokeOverview.types[0]}" type="text">
-  
-        <label>Descripción</label>
-        <textarea id="editDesc">${pokemon.pokeOverview.description}</textarea>
-  
-        <button id="saveEditBtn">Guardar cambios</button>
-        <button id="cancelEditBtn">Cancelar</button>
-    `;
-  
+    <div class="editForm">
+
+        <!-- NOMBRE -->
+        <div class="editNameBox">
+            <label>Nombre</label>
+            <input id="editName" value="${pokemon.pokeName}" type="text">
+        </div>
+
+        <!-- DESCRIPCIÓN -->
+        <div class="editDescBox">
+            <label>Descripción</label>
+            <textarea id="editDesc">${pokemon.pokeOverview.description}</textarea>
+        </div>
+
+        <!-- Fila con 3 columnas -->
+        <div class="editBasicBox">
+            <label>Tipo</label>
+            <input id="editType" value="${pokemon.pokeOverview.types.join(",")}">
+        </div>
+
+        <div class="editBasicBox">
+            <label>Peso</label>
+            <input id="editWeight" value="${pokemon.pokeOverview.weight}">
+        </div>
+
+        <div class="editBasicBox">
+            <label>Altura</label>
+            <input id="editHeight" value="${pokemon.pokeOverview.height}">
+        </div>
+
+        <!-- TÍTULO STATS -->
+        <h2 class="editStatsTitle">Estadísticas</h2>
+
+        <!-- GRID DE STATS -->
+        <div class="editStatsGrid">
+            ${pokemon.pokeOverview.stats.map(stat => `
+                <div class="statItem">
+                    <label>${stat.name}</label>
+                    <input type="number" value="${stat.base}">
+                </div>
+            `).join("")}
+        </div>
+
+        <!-- BOTONES -->
+        <div class="editButtons">
+            <button id="saveEditBtn">Guardar cambios</button>
+            <button id="cancelEditBtn">Cancelar</button>
+        </div>
+
+    </div>
+`;
+
     // ======= EVENTO GUARDAR =======
     document.getElementById("saveEditBtn").addEventListener("click", async () => {
   
@@ -77,7 +107,17 @@ export async function editPokemon(pokeID) {
           weight: Number(document.getElementById("editWeight").value),
           height: Number(document.getElementById("editHeight").value),
           types: [document.getElementById("editType").value],
-          description: document.getElementById("editDesc").value
+          description: document.getElementById("editDesc").value,
+          
+          // ===== STATS CORREGIDOS =====
+          stats: [
+            { name: "hp", base: Number(document.getElementById("statHP").value) },
+            { name: "attack", base: Number(document.getElementById("statAttack").value) },
+            { name: "defense", base: Number(document.getElementById("statDefense").value) },
+            { name: "special-attack", base: Number(document.getElementById("statSpAttack").value) },
+            { name: "special-defense", base: Number(document.getElementById("statSpDefense").value) },
+            { name: "speed", base: Number(document.getElementById("statSpeed").value) }
+          ]
         }
       };
   
@@ -97,8 +137,8 @@ export async function editPokemon(pokeID) {
   
         alert("Pokémon actualizado correctamente");
   
-        editDiv.innerHTML = ""; // limpiar form
-        renderPokemon(data.data); // repinta con los nuevos datos
+        editDiv.innerHTML = "";
+        renderPokemon(data.data);
   
       } catch (e) {
         console.error(e);
@@ -107,7 +147,9 @@ export async function editPokemon(pokeID) {
     });
   
     // ======= EVENTO CANCELAR =======
-    document.getElementById("cancelEditBtn")
-      .addEventListener("click", () => (editDiv.innerHTML = ""));
+    document.getElementById("cancelEditBtn").addEventListener("click", () => {
+      editDiv.classList = "editConteinerView";
+
+    });
   }
   

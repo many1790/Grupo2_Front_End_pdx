@@ -1,10 +1,11 @@
 import '../styles/style-index3.scss';
 import { editPokemon, getSprite } from './events/editPokemonFetch.js';
-
+import { Dom } from './dom/domElements.js';
+import { deletePoke, eventListenerForDelete } from './events/deletePokemon.js';
 // src/scripts/index3.js
 
 // 🔹 Referencias a los divs donde mostraremos la info
-export const mainScreen = document.querySelector("#cubo"); // Imagen, nombre, número
+export const mainScreen = document.querySelector("#cubo");       // Imagen, nombre, número
 export const typeDiv = document.querySelector("#typeDiv");       // Tipo
 export const weightDiv = document.querySelector("#weightDiv");   // Peso
 export const heightDiv = document.querySelector("#heightDiv");   // Altura
@@ -60,14 +61,14 @@ export function renderPokemon(pokemon) {
   descriptionDiv.innerHTML = `<p>${pokemon.pokeOverview.description}</p>`;
 
   // Estadísticas
-  console.log("STATS:", pokemon.pokeOverview.stats);
+  console.log("STATS:", pokemon.pokeOverview.stats[1]);
 
   statsDiv.innerHTML = "<h3>Estadísticas</h3>";
   const statsList = document.createElement("div");
   statsList.id="statsDiv_conteiner";
   pokemon.pokeOverview.stats.forEach(stat => {
     const li = document.createElement("div");
-    li.classList.add="statsLi";
+    li.className="statsLi";
     li.textContent = `${stat.name}: ${stat.base}`;
     statsList.appendChild(li);
   });
