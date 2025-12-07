@@ -1,7 +1,7 @@
 import { Dom } from "../dom/domElements.js";
 import { apiConfig } from "./apiConfig.js";
 
-export async function deletePoke(pokeID) {
+export async function deletePoke(pokeID, source) {
     console.log("ole");
     try {
         const response= await fetch(`${apiConfig.pokemon}${pokeID}`,{
@@ -12,7 +12,12 @@ export async function deletePoke(pokeID) {
         const data = await response.json();
         console.log("Deleted: ",data);
         Dom.deleteModal.classList.add("hidden");
-        return window.location.reload();
+        if (source === "index2") {
+            return window.location.reload();
+        }
+        if (source === "index3") {
+            return window.location.href = "index.html";
+        }
 
     } catch (error) {
         throw new Error(error.message);

@@ -24,6 +24,6 @@ Dom.confirmDeleteBtn.addEventListener("click", () => {
     if (!pokemonToDelete) return;
 
     const pokeID = pokemonToDelete.pokeID;
-    deletePoke(pokeID);
+    deletePoke(pokeID, "index2");
 })
 }

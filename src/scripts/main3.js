@@ -1,7 +1,7 @@
 import '../styles/style-index3.scss';
 import { editPokemon, getSprite } from './events/editPokemonFetch.js';
-import { Dom } from './dom/domElements.js';
-import { deletePoke, eventListenerForDelete } from './events/deletePokemon.js';
+import { deletePoke } from "./Api/deletePokemonFetch.js";
+import { Dom } from "./dom/domElements.js";
 // src/scripts/index3.js
 
 // 🔹 Referencias a los divs donde mostraremos la info
@@ -13,6 +13,7 @@ export const statsDiv = document.querySelector("#statsDiv");     // Estadística
 export const movesDiv = document.querySelector("#movesDiv");     // Movimientos
 export const descriptionDiv = document.querySelector("#descriptionDiv"); // Descripción
 export const nav= document.querySelector("#nav");
+//export const deleteBtn = document.querySelector("#deleteBtn");
 // Recuperamos info del Pokémon desde localStorage
 const storedUser = JSON.parse(localStorage.getItem("pdx_user"));
 
@@ -96,3 +97,34 @@ window.addEventListener("DOMContentLoaded", async () => {
 document.getElementById("editButton").addEventListener("click", () => {
   editPokemon(pokeID);
 });
+
+
+
+
+let pokemonToDelete = null;
+
+function eventListenerForDeletePoke(){
+document.querySelector("#deleteBtn").addEventListener("click", () => {
+    if (!pokeID) {
+        alert("No hay Pokémon seleccionado.");
+        return;
+    }
+
+    pokemonToDelete = pokeID;
+    document.querySelector("#deleteModal").classList.remove("hidden");
+});
+
+
+document.querySelector("#cancelDeleteBtn").addEventListener("click", () => {
+    document.querySelector("#deleteModal").classList.add("hidden");
+    pokemonToDelete = null;
+});
+
+document.querySelector("#confirmDeleteBtn").addEventListener("click", () => {
+    if (!pokemonToDelete) return;
+
+    deletePoke(pokemonToDelete, "index3");
+})
+}
+
+eventListenerForDeletePoke();
