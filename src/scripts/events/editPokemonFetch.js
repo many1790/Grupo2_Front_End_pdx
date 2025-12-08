@@ -44,13 +44,13 @@ export async function editPokemon(pokeID) {
 
         <!-- NOMBRE -->
         <div class="editNameBox">
-            <label>Nombre</label>
+            <label>Nombre:</label>
             <input id="editName" value="${pokemon.pokeName}" type="text">
         </div>
 
         <!-- DESCRIPCIÓN -->
         <div class="editDescBox">
-            <label>Descripción</label>
+            <label>Descripción:</label>
             <textarea id="editDesc">${
               pokemon.pokeOverview.description
             }</textarea>
@@ -58,30 +58,30 @@ export async function editPokemon(pokeID) {
 <div class="tipeBox">
         <!-- Fila con 3 columnas -->
         <div class="editBasicBox">
-            <label>Tipo</label>
+            <label>Type:</label>
             <input id="editType" value="${pokemon.pokeOverview.types.join(
               ","
             )}">
         </div>
             
         <div class="editBasicBox">
-            <label>Peso</label>
+            <label>Peso:</label>
             <input id="editWeight" value="${pokemon.pokeOverview.weight}">
         </div>
             
         <div class="editBasicBox">
-            <label>Altura</label>
+            <label>Altura:</label>
             <input id="editHeight" value="${pokemon.pokeOverview.height}">
         </div>
 </div>
         <!-- TÍTULO STATS -->
-        <h2 class="editStatsTitle">Estadísticas</h2>
+        <h2 class="editStatsTitle">Estadísticas:</h2>
 
         <!-- GRID DE STATS -->
         <div class="editStatsGrid">
            ${pokemon.pokeOverview.stats.map(stat => `
     <div class="statItem">
-        <label>${stat.name}</label>
+        <label>${stat.name}:</label>
         <input 
             type="number" 
             id="stat-${stat.name}" 
