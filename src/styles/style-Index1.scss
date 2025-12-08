@@ -25,11 +25,13 @@ body {
     position: absolute;
     display: flex;
 }
+.header{
+    margin-top: 2%;
+    display: flex;
+    justify-content: end;
+    margin-right: 5%;
+}
 .logo__app{
-    
-        position: relative;
-        left: 831px;
-        bottom: 566px;
         width: 200px;
         height: 100px;
         background-image: url(../images/logo1.png);
