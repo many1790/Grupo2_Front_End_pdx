@@ -15,7 +15,7 @@ body{
 //////////////////////////////////////////////////////////////
 .app2{/////main
     z-index: 0;
-    border:2px solid #fff ;
+
     display: flex;
     flex-direction: column;
     justify-content:space-between;
@@ -506,11 +506,17 @@ span{
     position: absolute;
     display: flex;
 }
+.header{
+    display: flex;
+    justify-content: end;
+    margin-top: 2%;
+    margin-right: 6%;
+}
 .logo__pdx{
     z-index: 20;
     position: relative;
-    left: 780px;
-    bottom: 535px;
+    left: 0px;
+    bottom: 0px;
     width: 200px;
     height: 100px;
     background-image: url(../images/logo1.png);
