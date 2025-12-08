@@ -2,6 +2,8 @@ import '../styles/style-index0.scss';
 
 const textDisplay = document.getElementById("textDisplay");
 const nextBtn = document.getElementById("nextBtn");
+const backBtn = document.getElementById("backBtn");
+const skipBtn = document.getElementById("skipBtn");
 
 const onboardingTexts = [
     "Bienvenido a PokeDex Trainer",
@@ -27,3 +29,13 @@ nextBtn.addEventListener("click", () => {
         window.location.href = "/index1.html";
     }
 });
+
+// Función para retrodecer al siguiente texto
+backBtn.addEventListener("click", () => {
+    if (currentIndex === 0) return;
+    currentIndex--;
+    if (currentIndex < onboardingTexts.length) {
+        textDisplay.textContent = onboardingTexts[currentIndex];
+}});
+
+skipBtn.addEventListener("click", () => window.location.href = "/index1.html");
