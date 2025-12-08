@@ -5,56 +5,33 @@ import { Dom } from "./dom/domElements.js";
 import { eventListenerForDelete } from "./events/deletePokemon.js";
 import { teamToggleListener } from "./events/teamToggleListener.js";
 
-///////////////////////////////////////////////////////////
-/*const user = JSON.parse(localStorage.getItem("user"));
-if (!user) {
-    window.location.href = "index.html";
-};*/
-
-//showMe();
-
-// Al cargar la página
-showAllPokemonsGrid(); // Muestra los primeros 20 Pokémon
-
-
-
+showAllPokemonsGrid();
 
 document.addEventListener("DOMContentLoaded", () => {
-eventListenerForDelete();
-teamToggleListener();
+  eventListenerForDelete();
+  teamToggleListener();
 });
 
 Dom.outBtn.addEventListener("click", () => {
   localStorage.clear();
-  window.location.href = "index1.html" })
+  window.location.href = "index1.html";
+});
 
 Dom.createButton.addEventListener("click", () => {
-  console.log("Opening new user form...");
   Dom.gridContainer.style.display = "none";
   setNewUserForm();
 });
 
 Dom.typeDiv2.addEventListener("click", () => {
-  console.log("Opening modify user form...");
   const pokemon = JSON.parse(localStorage.getItem("Selected-Pokemon"));
-  console.log(pokemon);
   setModifyUserForm(pokemon);
-  //setNewUserForm();
 });
 
 export function setNewUserForm() {
-  if (document.querySelector("#inputPokeName")) {
-    console.log("Form already set");
-    return;
-  }
+  if (document.querySelector("#inputPokeName")) return;
 
-  const newUserDiv = document.createElement("div"); ////////////////////////////////////////////////////////
-  newUserDiv.id = "newUserDiv"; ////////////////////////////////////////////////////////////////////////////
-
-  // const newUserForm = document.querySelector("PDX"); ///////////////////////////////////////////////
-  //newUserForm.id = "newUserForm";////////////////////////////////////////////////////////////////////
-
-  // inputs
+  const newUserDiv = document.createElement("div");
+  newUserDiv.id = "newUserDiv";
   const inputPokeName = document.createElement("input");
   inputPokeName.id = "inputPokeName";
   inputPokeName.required = true;
@@ -69,20 +46,17 @@ export function setNewUserForm() {
   inputWeight.id = "inputWeight";
   inputWeight.type = "number";
   inputWeight.required = true;
-  //inputWeight.placeholder = "Peso"
 
   const inputHeight = document.createElement("input");
   inputHeight.id = "inputHeight";
   inputHeight.type = "number";
   inputHeight.required = true;
-  //inputHeight.placeholder = "Altura"
 
   const inputPokeType = document.createElement("input");
   inputPokeType.id = "inputPokeType";
   inputPokeType.required = true;
   inputPokeType.placeholder = "Type:";
 
-  // buttons
   const cancelButton = document.createElement("button");
   cancelButton.textContent = "Can";
   cancelButton.id = "btnCancel";
@@ -93,16 +67,15 @@ export function setNewUserForm() {
   saveButton.textContent = "Sav";
 
   Dom.asideRight.append(
-    inputDescription, //////
-    inputWeight, //////
-    inputHeight, //////
-    inputPokeType, //////
-    cancelButton, //////
-    saveButton //////
+    inputDescription,
+    inputWeight,
+    inputHeight,
+    inputPokeType,
+    cancelButton,
+    saveButton
   );
   Dom.asideLeft.appendChild(inputPokeName);
 
-  // Send elements
   eventsForNewUserForm({
     cancelButton,
     saveButton,
@@ -115,13 +88,13 @@ export function setNewUserForm() {
 }
 
 export function showDetailButtons() {
-    Dom.toggleTeamBtn.classList = "team-btn"
-    Dom.deleteButton.classList = "btn-delete";
+  Dom.toggleTeamBtn.classList = "team-btn";
+  Dom.deleteButton.classList = "btn-delete";
 }
 
 export function hideDetailButtons() {
-    Dom.toggleTeamBtn.classList = "team-btnView"
-    Dom.deleteButton.classList = "btn-deleteView"
+  Dom.toggleTeamBtn.classList = "team-btnView";
+  Dom.deleteButton.classList = "btn-deleteView";
 }
 
 hideDetailButtons();

@@ -2,7 +2,6 @@
     font-family: "PIXEL" ;
     src: url(../src/fonts/PKMNRBYGSC.ttf);
 }
-///////////////////////////////////////////////////
 *{
     font-family: "PIXEL";
     margin: 0;
@@ -12,8 +11,7 @@
 body{
     background-color: #ede07f;
 }
-//////////////////////////////////////////////////////////////
-.app2{/////main
+.app2{
     z-index: 0;
 
     display: flex;
@@ -23,7 +21,7 @@ body{
     height: auto;
     width: 100%;
 }
-#PDX{/////PDX FULL////////////////////////////////////////
+#PDX{
     z-index: 0;
     display: flex;
     height: 550px;
@@ -33,10 +31,6 @@ background-position:center;
 background-repeat: no-repeat;
 background-image: url(../images/Artboard1.png);
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/////                          left    SIDE
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 .pdx__side1{
     z-index: 0;
     margin-left: 7%;
@@ -49,7 +43,6 @@ background-image: url(../images/Artboard1.png);
     z-index: 0;
     padding: 3px;
     overflow-y: scroll;
-    //display: grid;
     overflow-x: hidden;
     scroll-behavior: smooth;
     position: relative;
@@ -57,7 +50,6 @@ background-image: url(../images/Artboard1.png);
     left: 68px;
     width: 260px;
     height: 210px;
-    
 }
 .pokemon-grid {
     z-index: 0;
@@ -85,11 +77,6 @@ background-image: url(../images/Artboard1.png);
     z-index: 0;
     border-color: gold;
 }
-/*.hidden {
-    z-index: 0;
-    display: none !important;
-}
-*/
 #pdxScreenAux{
     z-index: 0;
     display: none;
@@ -111,19 +98,18 @@ background-image: url(../images/Artboard1.png);
     position: relative;
     top: -39px;
     z-index: 0;
-   text-align: center;
+    text-align: center;
 }
 .pdx__number{
     z-index: 0;
     padding: 5px;
     width: 115px;
     height: 45px;
-   font-weight: bolder;
+    font-weight: bolder;
     position: relative;
     top: 159px;
     left: 104px;
 }
-// ADD NEW USER BUTTON
 #pdxCreateButton {
     z-index: 0;
     border: 1.8px solid #36363677;
@@ -136,7 +122,6 @@ background-image: url(../images/Artboard1.png);
     left: 68px;
     background-color: transparent;
     cursor: pointer;
-    
     svg {
         z-index: 0;
         margin: 6px;
@@ -146,8 +131,6 @@ background-image: url(../images/Artboard1.png);
     &:hover {
         z-index: 0;
         transform: scale(1.04);
-        //transition: transform 0.2s ease-in-out;
-   
     }
 }
 
@@ -172,10 +155,6 @@ background-image: url(../images/Artboard1.png);
     color: greenyellow;
     text-align: center;
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/////                          RIGTH     SIDE
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 .pdx__side2{
     position: relative;
     z-index: 0;
@@ -184,7 +163,6 @@ background-image: url(../images/Artboard1.png);
     height: 100%;
     width: 45%;
 }
-
 .pdx__screen2{
     z-index: 0;
     padding: 10px;
@@ -240,11 +218,6 @@ span{
     z-index: 0;
     font-size: 12px;
 }
-
-
-
-
-////////////////////////INPUTS///////////////////////////////////////////////////////////////////////////
 #inputDescription{
     padding: 10px;
     color: greenyellow;
@@ -298,9 +271,7 @@ span{
 #inputPokeType::placeholder{
     color: greenyellow;
 }
-
-////////////////////////////BTNs/////////////////////////////////////
-#deleteBtn{ ////delete poke
+#deleteBtn{ 
     z-index: 0;
     width: 30px;
     height: 30px;
@@ -312,19 +283,16 @@ span{
     background-image: url(../images/svg.svg);
     font-size: 9px;
     cursor: pointer; 
-    background-size: 70px 50px; /* o contain */
+    background-size: 70px 50px;
     background-repeat: no-repeat;
     background-position: center;
-
-
     &:hover {
         z-index: 0;
         transform: scale(1.08);
         transition: transform 0.2s ease-in-out;
-   
     }
 }
-#type2{///////EDIT!!!!!!!!!////////////////////////////////
+#type2{
     z-index: 0;
     color: #000;
     background-color: #fa9a07;
@@ -334,26 +302,24 @@ span{
     font-size: 20px;
     text-align: center;
     cursor: pointer;
-    
 }
 #type2:hover{
     z-index: 0;
     transform:scale(1.03)
 }
 
-.editView{/////////////////////
+.editView{
     visibility: hidden;
 }
-.newView{//////////////////////
+.newView{
     visibility: hidden;
 }
-#btnCancel { ////cancel new poke
+#btnCancel {
     padding-left: 1px;
     color: greenyellow;
     width: 41px;
     height: 13px;
     line-height: 8px;
-    /* padding: 0; */
     margin: 0;
     font-size: 14px;
     text-align: center;
@@ -369,13 +335,12 @@ span{
     right: -129px;
 }
 
-#btnSave{/////save new poke
+#btnSave{
     padding-left: 1px;
     color: greenyellow;
     width: 41px;
     height: 13px;
     line-height: 8px;
-    /* padding: 0; */
     margin: 0;
     font-size: 14px;
     text-align: center;
@@ -390,9 +355,6 @@ span{
     top: -97px;
     right: -41px;
 }
-//////////////////////////////////////////////////////////////////////////////////////
-///                     EDITS       FRIENDS 
-//////////////////////////////////////////////////////////////////////////////////
 #editName{
     border-radius: 8px;
     color: greenyellow;
@@ -446,7 +408,6 @@ span{
     width: 41px;
     height: 13px;
     line-height: 8px;
-    /* padding: 0; */
     margin: 0;
     font-size: 14px;
     text-align: center;
@@ -495,11 +456,6 @@ span{
     top: -4px;
     left: -7px;
 }
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-/// 
-///TODO DELETE THIS AT THE END
 .tempoDiv{
     z-index: 0;
     position: absolute;
@@ -522,12 +478,9 @@ span{
     transition: transform 0.3s ease-in-out;
     height: 40px;
 }
-
 #OUT:hover {
     transform: scale(1.1);
 }
-
-
 .logo__pdx{
     z-index: 20;
     position: relative;
@@ -539,9 +492,6 @@ span{
     background-repeat: no-repeat;
     background-size: 200px,100px;
 }
-
-// Ventana modal ISAAC todo tuyo
-
 .modal {
   position: fixed;
   top: 0;
@@ -554,11 +504,9 @@ span{
   align-items: center;
   z-index: 2000;
 }
-
 .modal.hidden {
   display: none;
 }
-
 .modal-content {
   background: #f2f2f2;
   padding: 30px;
@@ -568,17 +516,14 @@ span{
   border: 4px solid #d62839;
   font-family: "Press Start 2P", sans-serif;
 }
-
 .modal-content h3 {
   margin-bottom: 10px;
 }
-
 .modal-buttons {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
 }
-
 .btn-delete {
   background: #d62839;
   color: white;
@@ -590,7 +535,6 @@ span{
 .btn-deleteView {
     visibility: hidden;
 }
-
 .btn-cancel {
   background: #005eff;
   color: white;
@@ -603,11 +547,10 @@ span{
 .btn-cancel:hover {
   opacity: 0.8;
 }
-
 .team-btn {
     background: transparent;
     box-shadow:0px 0px 8px 3px rgb(169, 215, 241);
-            border: 1.8px solid #36363677;
+    border: 1.8px solid #36363677;
     color: #fff;
     border-radius: 6px;
     cursor: pointer;
@@ -629,7 +572,7 @@ span{
 .team-btn.in-team {
     background: transparent;
     box-shadow:0px 0px 8px 3px rgb(252, 87, 87);
-        border: 1.8px solid #36363677;
+    border: 1.8px solid #36363677;
     color: #fff;
     border-radius: 6px;
     cursor: pointer;

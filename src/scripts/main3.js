@@ -1,34 +1,30 @@
-import '../styles/style-index3.scss';
-import { editPokemon, getSprite } from './events/editPokemonFetch.js';
+import "../styles/style-index3.scss";
+import { editPokemon, getSprite } from "./events/editPokemonFetch.js";
 import { deletePoke } from "./Api/deletePokemonFetch.js";
 import { Dom } from "./dom/domElements.js";
-// src/scripts/index3.js
 
-// 🔹 Referencias a los divs donde mostraremos la info
-export const mainScreen = document.querySelector("#cubo");       // Imagen, nombre, número
-export const typeDiv = document.querySelector("#typeDiv");       // Tipo
-export const weightDiv = document.querySelector("#weightDiv");   // Peso
-export const heightDiv = document.querySelector("#heightDiv");   // Altura
-export const statsDiv = document.querySelector("#statsDiv");     // Estadísticas
-export const movesDiv = document.querySelector("#movesDiv");     // Movimientos
-export const descriptionDiv = document.querySelector("#descriptionDiv"); // Descripción
-export const nav= document.querySelector("#nav");
-//export const deleteBtn = document.querySelector("#deleteBtn");
-// Recuperamos info del Pokémon desde localStorage
+export const mainScreen = document.querySelector("#cubo");
+export const typeDiv = document.querySelector("#typeDiv");
+export const weightDiv = document.querySelector("#weightDiv");
+export const heightDiv = document.querySelector("#heightDiv");
+export const statsDiv = document.querySelector("#statsDiv");
+export const movesDiv = document.querySelector("#movesDiv");
+export const descriptionDiv = document.querySelector("#descriptionDiv");
+export const nav = document.querySelector("#nav");
 const storedUser = JSON.parse(localStorage.getItem("pdx_user"));
 
 if (!storedUser || storedUser.mode !== "pokemon") {
   alert("No estás logueado como Pokémon");
-  window.location.href = "/index0.html"; // onboarding si no hay sesión
+  window.location.href = "/index0.html";
 }
 
 Dom.outBtn.addEventListener("click", () => {
   localStorage.clear();
-  window.location.href = "index1.html" })
+  window.location.href = "index1.html";
+});
 
 const pokeID = storedUser.pokeID;
 
-// Función para traer datos completos del Pokémon
 export async function fetchPokemonDetails(id) {
   try {
     const res = await fetch(`http://localhost:3000/pokemon/${id}`);
@@ -40,14 +36,12 @@ export async function fetchPokemonDetails(id) {
 
     return json.data;
   } catch (error) {
-    console.error("Error fetching Pokémon:", error);
+    console.log("Error fetching Pokémon:", error);
     alert("No se pudo cargar el Pokémon");
   }
 }
 
-// Función para pintar los detalles
 export function renderPokemon(pokemon) {
-  // Imagen, nombre y número
   const sprite = getSprite(pokemon.pokeID);
   mainScreen.innerHTML = `
     <img class="imgPoke" src="${sprite}" alt="${pokemon.pokeName}" />
@@ -55,35 +49,28 @@ export function renderPokemon(pokemon) {
     <p class="numberPoke">Nº: ${pokemon.pokeID}</p>
   `;
 
-  // Tipo
   typeDiv.innerHTML = `<p>Type: ${pokemon.pokeOverview.types.join(", ")}</p>`;
 
-  // Peso y altura
   weightDiv.innerHTML = `<p>Peso: ${pokemon.pokeOverview.weight}</p>`;
   heightDiv.innerHTML = `<p>Altura: ${pokemon.pokeOverview.height}</p>`;
 
-  // Descripción
   descriptionDiv.innerHTML = `<p>${pokemon.pokeOverview.description}</p>`;
-
-  // Estadísticas
-  console.log("STATS:", pokemon.pokeOverview.stats[1]);
 
   statsDiv.innerHTML = "<h3>Estadísticas</h3>";
   const statsList = document.createElement("div");
-  statsList.id="statsDiv_conteiner";
-  pokemon.pokeOverview.stats.forEach(stat => {
+  statsList.id = "statsDiv_conteiner";
+  pokemon.pokeOverview.stats.forEach((stat) => {
     const li = document.createElement("div");
-    li.className="statsLi";
+    li.className = "statsLi";
     li.textContent = `${stat.name}: ${stat.base}`;
     statsList.appendChild(li);
   });
   statsDiv.appendChild(statsList);
 
-  // Movimientos
   movesDiv.innerHTML = "<h3>Movimientos</h3>";
   const movesList = document.createElement("div");
-  movesList.className="divMoves";
-  pokemon.pokeOverview.moves.forEach(move => {
+  movesList.className = "divMoves";
+  pokemon.pokeOverview.moves.forEach((move) => {
     const li = document.createElement("p");
     li.textContent = move;
     movesList.appendChild(li);
@@ -91,7 +78,6 @@ export function renderPokemon(pokemon) {
   movesDiv.appendChild(movesList);
 }
 
-// Ejecutar todo al cargar la página
 window.addEventListener("DOMContentLoaded", async () => {
   const pokemonData = await fetchPokemonDetails(pokeID);
   if (pokemonData) {
@@ -102,33 +88,29 @@ document.getElementById("editButton").addEventListener("click", () => {
   editPokemon(pokeID);
 });
 
-
-
-
 let pokemonToDelete = null;
 
-function eventListenerForDeletePoke(){
-document.querySelector("#deleteBtn").addEventListener("click", () => {
+function eventListenerForDeletePoke() {
+  document.querySelector("#deleteBtn").addEventListener("click", () => {
     if (!pokeID) {
-        alert("No hay Pokémon seleccionado.");
-        return;
+      alert("No hay Pokémon seleccionado.");
+      return;
     }
 
     pokemonToDelete = pokeID;
     document.querySelector("#deleteModal").classList.remove("hidden");
-});
+  });
 
-
-document.querySelector("#cancelDeleteBtn").addEventListener("click", () => {
+  document.querySelector("#cancelDeleteBtn").addEventListener("click", () => {
     document.querySelector("#deleteModal").classList.add("hidden");
     pokemonToDelete = null;
-});
+  });
 
-document.querySelector("#confirmDeleteBtn").addEventListener("click", () => {
+  document.querySelector("#confirmDeleteBtn").addEventListener("click", () => {
     if (!pokemonToDelete) return;
 
     deletePoke(pokemonToDelete, "index3");
-})
+  });
 }
 
 eventListenerForDeletePoke();

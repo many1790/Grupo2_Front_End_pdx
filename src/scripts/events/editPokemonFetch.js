@@ -1,32 +1,8 @@
 import { fetchPokemonDetails } from "../main3.js";
 import { renderPokemon } from "../main3.js";
-
 export const API_URL = "http://localhost:3000/pokemon";
 
-let selectedCard = null;
-let selectedPokemon = null;
 
-const typeTranslation = {
-  normal: "Normal",
-  fire: "Fuego",
-  water: "Agua",
-  electric: "Eléctrico",
-  grass: "Planta",
-  ice: "Hielo",
-  fighting: "Lucha",
-  poison: "Veneno",
-  ground: "Tierra",
-  flying: "Volador",
-  psychic: "Psíquico",
-  bug: "Bicho",
-  rock: "Roca",
-  ghost: "Fantasma",
-  dragon: "Dragón",
-  dark: "Siniestro",
-  steel: "Acero",
-  fairy: "Hada",
-};
-// Función auxiliar para obtener sprite desde PokeAPI CDN
 export function getSprite(id) {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 }
@@ -37,7 +13,6 @@ export async function editPokemon(pokeID) {
   const pokemon = await fetchPokemonDetails(pokeID);
   if (!pokemon) return;
 
-  // ======= FORMULARIO COMPLETO =======
   editDiv.classList = "editConteinerView2";
   editDiv.innerHTML = `
     <div class="editForm">
@@ -79,7 +54,9 @@ export async function editPokemon(pokeID) {
 
         <!-- GRID DE STATS -->
         <div class="editStatsGrid">
-           ${pokemon.pokeOverview.stats.map(stat => `
+           ${pokemon.pokeOverview.stats
+             .map(
+               (stat) => `
     <div class="statItem">
         <label>${stat.name}:</label>
         <input 
@@ -88,7 +65,9 @@ export async function editPokemon(pokeID) {
             value="${stat.base}"
         >
     </div>
-`).join("")}
+`
+             )
+             .join("")}
 
 
         </div>
@@ -102,7 +81,6 @@ export async function editPokemon(pokeID) {
     </div>
 `;
 
-  // ======= EVENTO GUARDAR =======
   document.getElementById("saveEditBtn").addEventListener("click", async () => {
     const updatedPokemon = {
       pokeName: document.getElementById("editName").value,
@@ -112,9 +90,11 @@ export async function editPokemon(pokeID) {
         types: [document.getElementById("editType").value],
         description: document.getElementById("editDesc").value,
 
-        // ===== STATS CORREGIDOS =====
         stats: [
-          { name: "hp", base: Number(document.getElementById("stat-hp").value) },
+          {
+            name: "hp",
+            base: Number(document.getElementById("stat-hp").value),
+          },
           {
             name: "attack",
             base: Number(document.getElementById("stat-attack").value),
@@ -163,7 +143,6 @@ export async function editPokemon(pokeID) {
     }
   });
 
-  // ======= EVENTO CANCELAR =======
   document.getElementById("cancelEditBtn").addEventListener("click", () => {
     editDiv.classList = "editConteinerView";
   });

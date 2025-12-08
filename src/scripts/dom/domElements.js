@@ -1,4 +1,3 @@
-
 export const Dom = {
   anchorElement2: document.querySelector("#app2"),
   pdx: document.querySelector("#PDX"),
