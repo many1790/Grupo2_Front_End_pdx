@@ -112,13 +112,13 @@ export function setNewUserForm() {
 }
 
 export function showDetailButtons() {
-    Dom.toggleTeamBtn.style.display = "block";
-    Dom.deleteButton.style.display = "block";
+    Dom.toggleTeamBtn.classList = "team-btn"
+    Dom.deleteButton.classList = "btn-delete";
 }
 
 export function hideDetailButtons() {
-    Dom.toggleTeamBtn.style.display = "none";
-    Dom.deleteButton.style.display = "none";
+    Dom.toggleTeamBtn.classList = "team-btnView"
+    Dom.deleteButton.classList = "btn-deleteView"
 }
 
 hideDetailButtons();

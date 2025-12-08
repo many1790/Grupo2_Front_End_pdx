@@ -164,7 +164,7 @@ background-image: url(../images/Artboard1.png);
     position: relative;
     width: 248px;
     height: 37.9px;
-    top: 28px;
+    top: 10px;
     left: 76px;
     border-radius: 10px;
     
@@ -563,6 +563,10 @@ span{
   padding: 8px 18px;
   border-radius: 8px;
   cursor: pointer;
+  visibility: visible;
+}
+.btn-deleteView {
+    visibility: hidden;
 }
 
 .btn-cancel {
@@ -583,11 +587,15 @@ span{
     border-radius: 6px;
     cursor: pointer;
     position: relative;
-    bottom: -134px;
+    bottom: -130px;
     left: 124px;
     width: 51px;
     height: 14px;
     font-size: 11px;
+    visibility: visible;
+}
+.team-btnView {
+    visibility: hidden;
 }
 
 .team-btn.in-team {
@@ -595,7 +603,7 @@ span{
     border-radius: 6px;
     cursor: pointer;
     position: relative;
-    bottom: -134px;
+    bottom: -130px;
     left: 185px;
     width: 51px;
     height: 14px;
