@@ -1,0 +1,173 @@
+import { Dom } from "../dom/domElements.js";
+import { hideDetailButtons, showDetailButtons } from "../main2.js";
+export const API_URL = "http://localhost:3000/pokemon";
+
+let selectedPokemon = null;
+
+const typeTranslation = {
+  normal: "Normal",
+  fire: "Fuego",
+  water: "Agua",
+  electric: "Eléctrico",
+  grass: "Planta",
+  ice: "Hielo",
+  fighting: "Lucha",
+  poison: "Veneno",
+  ground: "Tierra",
+  flying: "Volador",
+  psychic: "Psíquico",
+  bug: "Bicho",
+  rock: "Roca",
+  ghost: "Fantasma",
+  dragon: "Dragón",
+  dark: "Siniestro",
+  steel: "Acero",
+  fairy: "Hada",
+};
+function getSprite(id) {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+}
+
+export function createCardGrid(pokemon) {
+  const sprite = getSprite(pokemon.pokeID);
+
+  const card = document.createElement("div");
+  card.classList.add("pokemon-card");
+
+  card.innerHTML = `
+        <img src="${sprite}" alt="${pokemon.pokeName}" width="80">
+        <p>${pokemon.pokeName.toUpperCase()}</p>
+    `;
+
+  card.addEventListener("click", () => {
+    Dom.typeDiv0.style.display = "none";
+    showDetail(pokemon);
+  });
+
+  Dom.gridContainer.appendChild(card);
+}
+
+function updateButtonStateOnSelect(selectedPokeID) {
+  const admin = JSON.parse(localStorage.getItem("pdx_user"));
+  if (!admin || admin.mode !== "admin") return;
+
+  const team = admin.collection;
+
+  if (team.includes(selectedPokeID)) {
+    Dom.toggleTeamBtn.textContent = "Rmv";
+    Dom.toggleTeamBtn.classList.add("in-team");
+  } else {
+    Dom.toggleTeamBtn.textContent = "Add";
+    Dom.toggleTeamBtn.classList.remove("in-team");
+  }
+  return;
+}
+
+export function showDetail(pokemon) {
+  showDetailButtons();
+  updateButtonStateOnSelect(pokemon.pokeID);
+  selectedPokemon = pokemon;
+  sessionStorage.setItem("Selected-Pokemon", JSON.stringify(selectedPokemon));
+  const sprite = getSprite(pokemon.pokeID);
+
+  Dom.auxScreen.style.display = "block";
+
+  Dom.auxScreen.innerHTML = `
+        <img class="imgPK" src="${sprite}" alt="${pokemon.pokeName}">
+        <h2 class="namePK">${pokemon.pokeName.toUpperCase()}</h2>
+    `;
+
+  Dom.NumberPK.innerHTML = `<p>Number: <br> # ${pokemon.pokeID}</p>`;
+  Dom.weigthDiv.innerHTML = `<p>W: ${pokemon.pokeOverview.weight}</p>`;
+  Dom.heightDiv.innerHTML = `<p>H: ${pokemon.pokeOverview.height}</p>`;
+
+  const firstType = pokemon.pokeOverview.types[0];
+  Dom.typeDiv1.innerHTML = `<p>Type: <br> ${
+    typeTranslation[firstType] || firstType
+  }</p>`;
+
+  const desc = pokemon.pokeOverview?.description || "No description available";
+  Dom.secondScreen.innerHTML = `<p>Description:<br>${desc}</p>`;
+
+  Dom.createButton.className = "newView";
+  Dom.typeDiv2.classList = "typeOf";
+  Dom.typeDiv2.addEventListener("click", () => {
+    if (selectedPokemon === null) {
+      return;
+    } else {
+      Dom.typeDiv2.style.color = "grey";
+      Dom.auxScreen.querySelector(
+        ".namePK"
+      ).outerHTML = `<input type="text" id="editName" value="${pokemon.pokeName}">`;
+      Dom.weigthDiv.innerHTML = `<input type="number" id="editWeight" value="${pokemon.pokeOverview.weight}">`;
+      Dom.heightDiv.innerHTML = `<input type="number" id="editHeight" value="${pokemon.pokeOverview.height}">`;
+      Dom.typeDiv1.innerHTML = `<input type="text" id="editType" value="${
+        typeTranslation[firstType] || firstType
+      }">`;
+      Dom.secondScreen.innerHTML = `<textarea id="editDesc">${pokemon.pokeOverview.description}</textarea>`;
+      const noBtn = document.createElement("button");
+      noBtn.id = "noBtn";
+      noBtn.textContent = "Can";
+      Dom.asideRight.appendChild(noBtn);
+      const saveBtn = document.createElement("button");
+      saveBtn.id = "editSaveBTN";
+      saveBtn.textContent = "Sav ";
+      Dom.asideRight.appendChild(saveBtn);
+
+      saveBtn.addEventListener("click", async () => {
+        const reversedType =
+          Object.keys(typeTranslation).find(
+            (key) =>
+              typeTranslation[key] === document.getElementById("editType").value
+          ) || document.getElementById("editType").value;
+
+        const updatedData = {
+          pokeName: document.getElementById("editName").value,
+          pokeOverview: {
+            weight: Number(document.getElementById("editWeight").value),
+            height: Number(document.getElementById("editHeight").value),
+            types: [reversedType],
+            description: document.getElementById("editDesc").value,
+          },
+        };
+
+        try {
+          const res = await fetch(
+            `http://localhost:3000/pokemon/${pokemon.pokeID}`,
+            {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(updatedData),
+            }
+          );
+          const data = await res.json();
+          if (res.ok) {
+            alert("Pokémon actualizado correctamente");
+            showDetail(data.data);
+          } else {
+            alert("Error al actualizar: " + data.message);
+          }
+        } catch (err) {
+          console.log(err);
+          alert("Error de red al actualizar Pokémon");
+        }
+      });
+    }
+  });
+
+  const imgPoke = document.querySelector(".imgPK");
+  imgPoke.onclick = (e) => {
+    hideDetailButtons();
+    Dom.createButton.className = "";
+    Dom.typeDiv2.classList = "typeOf, editView";
+    Dom.auxScreen.style.display = "none";
+    Dom.NumberPK.innerHTML = "Number:";
+    Dom.weigthDiv.innerHTML = "W:";
+    Dom.heightDiv.innerHTML = "H:";
+    Dom.typeDiv1.innerHTML = "Type:";
+    Dom.secondScreen.innerHTML = "Description:";
+    Dom.typeDiv0.style.display = "block";
+
+    selectedPokemon = null;
+  };
+}

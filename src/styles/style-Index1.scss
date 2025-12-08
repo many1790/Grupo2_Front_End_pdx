@@ -1,0 +1,110 @@
+@font-face {
+    font-family: "PIXEL";
+    src: url(../fonts/PKMNRBYGSC.ttf) format("truetype"); 
+}
+
+*{
+    font-family: "PIXEL", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #ede07f;
+}
+#app{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+.tempoDiv{
+    position: absolute;
+    display: flex;
+}
+.header{
+    margin-top: 2%;
+    display: flex;
+    justify-content: end;
+    margin-right: 5%;
+}
+.logo__app{
+        width: 200px;
+        height: 100px;
+        background-image: url(../images/logo1.png);
+        background-repeat: no-repeat;
+        background-size: 200px,100px;
+    }
+
+.pdx__box{
+    
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height:580px;
+    background-image: url(../images/close-pdx-removebg-preview\ \(1\).png);
+    background-repeat: no-repeat;
+    background-size: 485px;
+    background-position: left;
+    
+    
+    .formulario{
+        
+        margin-top: 20px;
+        margin-left: 20px;
+        width: 250px;
+        gap: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+.BOTONSUBMIT{
+    font-family: "PIXEL", sans-serif;
+    margin-left: 30px;
+    background-color: #fa9a07;
+    color: #eee;
+    border-radius: 15px;
+    width: 100px;
+    height: 40px;
+    padding: 0;
+    font-size: 14px;
+    border:ridge;
+    
+}
+.CUENTA{
+    color: greenyellow;
+    width: 160px;
+    height: 30px;
+    background-color: #165749;
+    border: none;
+    border-bottom: 2px solid greenyellow;
+    border-left: 2px solid greenyellow;
+    padding: 4px;
+    &::placeholder{
+        color: greenyellow;
+        font-family: PIXEL, sans-serif;
+    }
+}
+
+.CLAVE{
+    
+    color: greenyellow;
+    width: 160px;
+    height: 30px;
+    background-color:#165749;
+    border:none;
+    border-bottom: 2px solid greenyellow;
+    border-left: 2px solid greenyellow;
+    padding: 4px;
+    &::placeholder{
+        color: greenyellow;
+        
+    }
+}

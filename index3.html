@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDX index3</title>
+  </head>
+  <body>
+    <header>
+      <button id="OUT">OUT</button>
+      <div id="nav" class="logoImg"></div>
+    </header>
+    <main id="conteiner" class="conteiner">
+      <aside class="left">
+        <section id="cubo" class="cubo"></section>
+      </aside>
+      <aside id="cubo2" class="cubo2">
+        <div id="editContainer" class="editConteinerView"></div>
+        <section id="section2">
+          <div id="descriptionDiv">Description:</div>
+          <div class="div0">
+            <div class="div1"></div>
+            <div class="div2"></div>
+            <div class="div1"></div>
+            <div class="div2"></div>
+            <div class="div1"></div>
+            <div class="div2"></div>
+            <div class="div1"></div>
+            <div class="div2"></div>
+            <div class="div1"></div>
+          </div>
+          <div id="shapeDiv">
+            <div id="typeDiv">tipo</div>
+            <div id="weightDiv"></div>
+            <div id="heightDiv"></div>
+          </div>
+          <div id="statsDiv"></div>
+        </section>
+      </aside>
+      <div>
+        <button id="editButton">Editar Pokémon</button>
+        <button id="deleteBtn" type="button">Eliminar pokemon</button>
+      </div>
+    </main>
+
+    <div id="movesDiv"></div>
+    <div id="deleteModal" class="modal hidden">
+      <div class="modal-content">
+        <h3>¿Seguro que deseas eliminar este Pokémon?</h3>
+        <p>Esta acción no se puede deshacer.</p>
+        <div class="modal-buttons">
+          <button id="cancelDeleteBtn" class="btn-cancel">Cancelar</button>
+          <button id="confirmDeleteBtn" class="btn-delete">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="./src/scripts/main3.js"></script>
+</html>
