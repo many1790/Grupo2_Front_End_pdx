@@ -22,6 +22,10 @@ if (!storedUser || storedUser.mode !== "pokemon") {
   window.location.href = "/index0.html"; // onboarding si no hay sesión
 }
 
+Dom.outBtn.addEventListener("click", () => {
+  localStorage.clear();
+  window.location.href = "index1.html" })
+
 const pokeID = storedUser.pokeID;
 
 // Función para traer datos completos del Pokémon

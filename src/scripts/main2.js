@@ -24,6 +24,9 @@ eventListenerForDelete();
 teamToggleListener();
 });
 
+Dom.outBtn.addEventListener("click", () => {
+  localStorage.clear();
+  window.location.href = "index1.html" })
 
 Dom.createButton.addEventListener("click", () => {
   console.log("Opening new user form...");
